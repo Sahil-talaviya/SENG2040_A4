@@ -121,6 +121,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+CSRF_COOKIE_HTTPONLY = False 
+CSRF_USE_SESSIONS = False    
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
