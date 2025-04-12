@@ -1,4 +1,3 @@
-console.log(window.location)
 const postBox = document.getElementById('post-box')
 
 const alertBox = document.getElementById('alert-box')
@@ -28,14 +27,9 @@ $.ajax({
     type: 'GET',
     url: url,
     success: function(response){
-        console.log(response)
-
         const data = response.data
 
-        if (data.logged_in !== data.author){
-            console.log('different')
-        } else {
-            console.log('the same')
+        if (data.logged_in == data.author){
             updateBtn.classList.remove('not-visible')
             deleteBtn.classList.remove('not-visible')
         }
@@ -79,7 +73,6 @@ updateForm.addEventListener('submit', e=>{
             'body': bodyInput.value,
         },
         success: function(response){
-            console.log(response)
             handleAlerts('success', 'post has been updated')
             title.textContent = response.title
             body.textContent = response.body

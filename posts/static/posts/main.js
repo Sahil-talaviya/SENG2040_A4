@@ -1,5 +1,3 @@
-console.log('Hello World')
-
 const postsbox = document.getElementById('posts-box')
 const spinnerBox = document.getElementById('spinner-box')
 const loadBtn = document.getElementById('load-btn')
@@ -58,7 +56,6 @@ const likeUnlikePosts = () => {
                 'pk': clickedId,
             },
             success: function(response){
-                console.log(response)
                 clickedBtn.textContent = response.liked ? `Unlike (${response.count})`: `Like (${response.count})`
             },
             error: function(error){
@@ -75,11 +72,9 @@ const getData = () => {
         type: 'GET',
         url: `/data/${visible}/`,
         success: function(response){
-            console.log(response)
             const data = response.data
             setTimeout(() => {
                 spinnerBox.classList.add('not-visible')
-                console.log(data)
                 data.forEach(el => {
                     postsbox.innerHTML += `
                        <div class="card mb-2">
@@ -104,7 +99,6 @@ const getData = () => {
                 });
                 likeUnlikePosts()
             }, 100)
-            console.log(response.size)
             if (response.size === 0) {
                 endBox.textContent = 'No posts added yet...'
             } else if (response.size <= visible) {
@@ -137,7 +131,6 @@ postForm.addEventListener('submit', e=>{
             'body': body.value,
         },
         success: function(response){
-            console.log(response)
             newPostId = response.id
             postsbox.insertAdjacentHTML('afterbegin', `
                     <div class="card mb-2">
